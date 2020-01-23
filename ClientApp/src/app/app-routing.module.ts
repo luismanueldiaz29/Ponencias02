@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Route } from '@angular/compiler/src/core';
-import { SideNavComponent } from './side-nav/side-nav.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { LoginComponent } from './login/login.component';
+import { RegistrarDocenteComponent } from './registrar-docente/registrar-docente.component';
 
 const routes : Routes = [
   {
@@ -18,7 +16,11 @@ const routes : Routes = [
   },
   {
     path : 'Home',
-    component : SideNavComponent
+    component : HomeComponent
+  },
+  {
+    path : "Registrar",
+    component : RegistrarDocenteComponent
   }
 ]
 

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { NgProgressModule } from 'ngx-progressbar';
 import { LoginComponent } from './login/login.component';
+import { RegistrarDocenteComponent } from './registrar-docente/registrar-docente.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,16 +25,17 @@ import { LoginComponent } from './login/login.component';
     FetchDataComponent,
     SideNavComponent,
     SolicitudComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrarDocenteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    MaterialModule,
-    NgProgressModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap : [AppComponent]

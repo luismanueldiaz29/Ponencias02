@@ -1,15 +1,43 @@
-<div class="login-box">
-    <img src="assets/user.png" class="avatar" alt="Avatar Image" >
-    <h1>Login Here</h1>
-    <form>
-      <!-- USERNAME INPUT -->
-      <label for="username">Username</label>
-      <input type="text" placeholder="Enter Username">
-      <!-- PASSWORD INPUT -->
-      <label for="password">Password</label>
-      <input type="password" placeholder="Enter Password">
-      <input type="submit" (click) = "acceder()" value="Log In">
-      <a href="#">Lost your Password?</a><br>
-      <a href="#">Don't have An account?</a>
-    </form>
+<div class="wrapper">
+  <div class="panel">
+      <mat-progress-bar mode="query" *ngIf = "showSpinner" ></mat-progress-bar>
+      <nav class="navbar navbar-default navbar-fixed">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="unicesar.edu.co">Universidad Popular del Cesar</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a routerLink = "/Registrar">
+                  <p>Registrar</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row contenido animated fadeInUp">
+          <div class="col-md-4">
+            <div class="card">
+              <div class="header">
+                  <h1 class="title">Login</h1>
+              </div>
+              <div class="content">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="text" class="form-control" placeholder="ingrece su email" >
+                </div> 
+                <div class="form-group">
+                  <label>Contraceña</label>
+                  <input type="password" class="form-control" placeholder="ingrece su contraceña" >
+                </div>
+                  <button class="btn btn-info btn-fill" routerLink = "/Home">Acceder</button>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

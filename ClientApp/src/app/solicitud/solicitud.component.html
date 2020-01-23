@@ -66,7 +66,7 @@
     </div>
 
     <div class="main-panel">
-        <mat-progress-bar mode="query" color = "green" *ngIf = "showSpinner" ></mat-progress-bar>
+        <mat-progress-bar mode="query" *ngIf = "showSpinner" ></mat-progress-bar>
         <nav class="navbar navbar-default navbar-fixed">  
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -105,7 +105,7 @@
                               </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a routerLink = "/">
                                 <p>Log out</p>
                             </a>
                         </li>
