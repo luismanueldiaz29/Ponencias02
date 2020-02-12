@@ -4,6 +4,11 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Docente } from '../models/docente';
 import { ProgramaService } from '../services/Programa.service';
 import { FacultadService } from '../services/facultad.service';
+import { DocenteService } from '../services/docente.service';
+import { Facultad } from '../models/facultad';
+import { Programa } from '../models/Programa';
+import { GrupoInvestigacionService } from '../services/grupoInvestigacion.service';
+import { GrupoInvestigacion } from '../models/grupoInvestingacion';
 
 @Component({
   selector: 'app-registrar-docente',
@@ -11,21 +16,27 @@ import { FacultadService } from '../services/facultad.service';
   styleUrls: ['./registrar-docente.component.css']
 })
 export class RegistrarDocenteComponent implements OnInit {
+  
   imports : [MaterialModule];
   showSpinner = false;
   docente : Docente;
   submitted : boolean = false;
   private formGroup : FormGroup;
+  grupoInvestigaciones : GrupoInvestigacion[];
+  programas : Programa[];
+  grupoInvestigacionId : number;
+  facultadId : number;
 
   constructor(
     private _formBuilder: FormBuilder,
     private programaService : ProgramaService,
-    private facultadService : FacultadService
+    private grupoService : GrupoInvestigacionService,
+    private docenteService : DocenteService
   ) { }
 
   ngOnInit() {
     this.loadData();
-    this.formGroups();
+    // this.formGroups();
     this.InstanciarDocente();
     this.getAll();
   }
@@ -47,8 +58,8 @@ export class RegistrarDocenteComponent implements OnInit {
       Email: "",      
       direccion: "",
       Pass: "",
-      facultadId : 0,
-      grupoInvestigacionId : 0
+      facultadId : this.facultadId,
+      grupoInvestigacionId : this.grupoInvestigacionId
     }
   }
 
@@ -68,15 +79,14 @@ export class RegistrarDocenteComponent implements OnInit {
   }
 
   getAll(){
-    this.facultadService.getAll().subscribe(
-      facultad => {
-        
-      }
-    );
+    this.grupoService.getAll().subscribe(
+      grupo => {
+        this.grupoInvestigaciones = grupo
+    });
 
     this.programaService.getAll().subscribe(
       programa => {
-        
+        this.programas = programa;
       }
     );
   }
@@ -84,9 +94,10 @@ export class RegistrarDocenteComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.formGroup.invalid) {
-      return;
-    }
+    // if (this.formGroup.invalid) {
+    //   return;
+    // }
+    alert('id: '+this.docente.id+' nombre : '+this.docente.Nombres+' apelldios '+this.docente.Apellidos+' vinculo '+this.docente.VinculoInst+'facultadid'+this.docente.facultadId+' grupo: '+this.docente.grupoInvestigacionId);
     this.add();
   }
 
@@ -96,7 +107,12 @@ export class RegistrarDocenteComponent implements OnInit {
   }
 
   add(){
-
+    this.docenteService.add(this.docente).subscribe(
+      docente => {
+        docente != null ? 
+        alert('se agrego el docente '+docente.Nombres) : alert('ocurrio un error')
+      }
+    );
   }
 
 }

@@ -25,27 +25,28 @@
                             </div>
                         
                             <div class="content">
-                                <form [formGroup]="formGroup">
+                                <form>
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Identificación</label>
-                                                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.id.errors }" placeholder="Identificación" formControlName="id" [(ngModel)]="docente.id" >
+                                                <!-- <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.id.errors }" placeholder="Identificación" formControlName="id" [(ngModel)]="docente.id" >
                                                 <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
                                                     <div *ngIf="f.id.errors.required">Titulo es requerido</div>
-                                                </div>
+                                           </div> -->
+                                                <input type="text" class="form-control" placeholder="Identificación" name = "Identificación" [(ngModel)]="docente.id" >
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Nombres</label>
-                                                <input type="text" class="form-control" placeholder="Nombres">
+                                                <input type="text" class="form-control" placeholder="Nombres" name = "Nombres" [(ngModel)]="docente.Nombres">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Apellidos</label>
-                                                <input type="text" class="form-control" placeholder="Apellidos">
+                                                <input type="text" class="form-control" placeholder="Apellidos" name = "apellido" [(ngModel)]="docente.Apellidos">
                                             </div>
                                         </div>
                                     </div>
@@ -53,13 +54,13 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Teléfono Celular</label>
-                                                <input type="text" class="form-control" placeholder="Teléfono Celular">
+                                                <input type="text" class="form-control" placeholder="Teléfono Celular" name = "telefono" [(ngModel)]="docente.Telefono">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Vinculo Institucional</label>
-                                                <select name="select" class="form-control">
+                                                <select class="form-control" type = "text" name = "vinculo" [(ngModel)]="docente.VinculoInst">
                                                     <option value="DC">DC</option>
                                                     <option value="DC">DP</option>
                                                     <option value="DC">DO</option>
@@ -73,7 +74,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Dirección Residencial</label>
-                                                <input type="text" class="form-control" placeholder="Dirección Residencial">
+                                                <input type="text" class="form-control" name = "direccion" placeholder="Dirección Residencial" [(ngModel)]="docente.direccion">
                                             </div>
                                         </div>
                                     </div>
@@ -81,29 +82,33 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="text" class="form-control" placeholder="Email" >
+                                                <input type="text" class="form-control" placeholder="Email" name = "email" [(ngModel)]="docente.Email">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Contraceña</label>
-                                                <input type="password" class="form-control" placeholder="Contraceña">
+                                                <input type="text" class="form-control" placeholder="Contraceña" name = "pass" [(ngModel)]="docente.Pass">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>programa</label>
-                                                <input type="text" class="form-control" placeholder="programa">
+                                                <select class="form-control" name = "programa" placeholder="programa al que pertenece" [(ngModel)]="facultadId">
+                                                    <option *ngFor = "let programa of programas" value="programa.facultadId">{{programa.nombrePrograma}}</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-5">
                                             <label>Grupo de Investigación</label>
-                                            <input type="password" class="form-control" placeholder="Grupo de Investigación">
+                                            <select class="form-control" name = "grupo" placeholder="Grupo de investigacion al que pertenece" [(ngModel)]="grupoInvestigacionId">
+                                                <option *ngFor = "let grupo of grupoInvestigaciones" value="grupo.id">{{grupo.nombreGrupo}}</option>
+                                            </select>
                                         </div>
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-4"></div>
+                                        <div class="col-md-3">{{docente.facultadId}} </div>
+                                        <div class="col-md-4">{{docente.grupoInvestigacionId}} </div>
                                     </div>
                                     <br><br>
                                     <button class="btn btn-primary btn-fill" (click) = "onSubmit()">Guardar</button>
